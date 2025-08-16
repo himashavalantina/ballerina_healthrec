@@ -14,16 +14,31 @@ type DiseaseRecord record {|
     string date;
 |};
 
-type Signup record {|
-    string id;
+// Incoming payload (from client)
+type SignupRequest record {|
     string firstName;
     string lastName;
     string email;
     string password;
     string gender;
+    string? phoneNumber;
+    string dateOfBirth;              // required, client provides
+    VaccineRecord[]? vaccines;
+|};
+
+// Internal model we insert into DB
+type User record {|
+    string id;                       // system generated
+    string firstName;
+    string lastName;
+    string email;
+    string password;
+    string gender;
+    string? phoneNumber;
     string dateOfBirth;
     VaccineRecord[] vaccines;
 |};
+
 
 
 enum Gender {
