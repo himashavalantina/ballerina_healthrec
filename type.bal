@@ -1,5 +1,3 @@
-import ballerina/time;
-
 
 type VaccineRecord record {|
     string name;
@@ -22,7 +20,7 @@ type SignupRequest record {|
     string password;
     string gender;
     string? phoneNumber;
-    string dateOfBirth;              // required, client provides
+    string dateOfBirth;              // in YYYY-MM-DD format
     VaccineRecord[]? vaccines;
 |};
 
@@ -46,41 +44,25 @@ enum Gender {
     female = "female"
 }
 
-type Login record {| 
-    string email;
-    string password;
+type BMICheckRequest record {|
+    string userId;
+    int ageInMonths;
+    string gender; // "male" or "female"
+    float weight;  // in kg
+    float height;  // in cm
 |};
 
-type DocApoinment record {| 
-    time:Utc date;
-    string time;
-    string place;
-    string disease;
-|};
-
-
-
-type BMI record {| 
-    float weight;
+type BMICheckResponse record {|
     float height;
+    string status?;
+    float? bmi?;
 |};
 
+type GrowthRange record { 
+    float under; 
+    float min; 
+    float max; 
+    float over; 
+};
 
-// type CommonRecord record {| 
-//     BMI bmi;
-//     DocApoinment[] appointments;
-//     VaccineRecord[] vaccines;
-//     Disease[] diseases;
-// |};
 
-// type BelowTwo record {| 
-//     BMI bmi;
-//     VaccineRecord[] vaccines;
-//     Disease[] diseases;
-// |};
-
-// type AboveTwo record {| 
-//     BMI bmi;
-//     VaccineRecord[] vaccines;
-//     Disease[] diseases;
-// |};
